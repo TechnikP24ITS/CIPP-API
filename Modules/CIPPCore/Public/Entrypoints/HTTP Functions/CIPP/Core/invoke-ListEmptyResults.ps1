@@ -1,17 +1,17 @@
 using namespace System.Net
 
-Function invoke-ListEmptyResults {
+function invoke-ListEmptyResults {
     <#
+    .SYNOPSIS
+     - Purposely lists an empty result
     .FUNCTIONALITY
-        Entrypoint - Purposely lists an empty result
+        Entrypoint,AnyTenant
     .ROLE
-        CIPP.Core
+        CIPP.Core.Read
     #>
     [CmdletBinding()]
     param($Request, $TriggerMetadata)
-
-
-    Push-OutputBinding -Name Response -Value ([HttpResponseContext]@{
+    return ([HttpResponseContext]@{
             StatusCode = [HttpStatusCode]::OK
             Body       = @()
         })
